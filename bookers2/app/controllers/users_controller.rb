@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   # ログイン済ユーザーのみにアクセスを許可する
   # コントローラーの先頭に記載することで、そこで行われる処理はログインユーザーによってのみ実行可能となる
-  before_action :current_user, only: [:edit, :update]
-  # サインインしているユーザーを取得する
 
   def show
    @user = User.find(params[:id])
@@ -12,7 +10,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user != current_user
+    
+    # if @user != current_user
+    if @user == current_user
+    # redirect_to user_path(current_user)
+    render :edit
+    else
     redirect_to user_path(current_user)
     end
   end

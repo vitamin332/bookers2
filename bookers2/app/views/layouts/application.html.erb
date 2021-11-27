@@ -23,7 +23,7 @@
             <span class="navbar-toggler-icon"></span></button>
               <div class="navbar-collapse collapse" id="navbarNavDropdown" >
             <ul class="navbar-nav ml-auto">
-              <li><p class="fas fa-home nav-link text-light text-white" > <%= link_to 'Home', user_path(current_user), class:"text-light" %></p></li>
+              <li><p class="fas fa-home nav-link text-light text-white" > <%= link_to 'Home', user_path(current_user.id), class:"text-light" %></p></li>
               <li><p class="fas fa-users nav-link text-light"> <%= link_to 'Users', users_path , class:"text-light" %></p></li>
               <li><p class="fas fa-book-open nav-link text-light"> <%= link_to 'Books', books_path , class:"text-light"%></p></li>
               <li><p class="fas fa-sign-out-alt nav-link text-light"><%= link_to "Log out", destroy_user_session_path, method: :delete , class:"text-light"%></p></li>

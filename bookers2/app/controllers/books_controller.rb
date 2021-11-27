@@ -2,8 +2,13 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   # ログイン済ユーザーのみにアクセスを許可する
   # コントローラーの先頭に記載することで、そこで行われる処理はログインユーザーによってのみ実行可能となる
-  before_action :current_user, only: [:edit, :update]
+  before_action :current_user, only: [:edit, :update,]
   # サインインしているユーザーを取得する
+
+  def set_book
+    @book = current_user.books.find_by(id: params[:id])
+  end
+
 
   def update
     @book = Book.find(params[:id]) # 何を更新存するのかを指定
@@ -19,6 +24,12 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    #
+    if @book.user == current_user
+      render :edit
+    else
+      redirect_to books_path
+    end
   end
 
   def create
@@ -42,6 +53,7 @@ class BooksController < ApplicationController
   def show
     @booknew = Book.new
     @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def destroy
