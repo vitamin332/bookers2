@@ -5,9 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
   # has_manyはモデル名が複数形
   attachment :profile_image
-  
+
   validates :name,
   presence: true, uniqueness: true, length: { in: 2..20 }
     # 文字数の制限を設ける→length #長さの範囲を2-20文字→in ..

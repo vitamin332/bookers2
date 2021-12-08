@@ -25,7 +25,7 @@
        <th>introduction</th>
        <th><%=@user.introduction%></th>
       </tr>
-     </tbody>
+     </tbody> 
     </table>
     <div class="row">
      <%= link_to "", edit_user_path(@user) ,class:"btn btn-outline-secondary btn-block fas fa-user-cog" %>
@@ -70,6 +70,9 @@
         <% end %>
        </td>
        <td><%= book.body %></td>
+       <td id="favorite_buttons_<%= book.id %>">
+         <%= render "favorites/favorite", book: book %>
+        </td>
       </tr>
       <% end %>
      </tbody>
